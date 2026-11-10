@@ -1,9 +1,12 @@
 package model.entities;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 
 public class Reservation {
+
+    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     private Integer roomNumber;
     private Date checkin;
@@ -27,16 +30,8 @@ public class Reservation {
         return checkin;
     }
 
-    public void setCheckin(Date checkin) {
-        this.checkin = checkin;
-    }
-
     public Date getCheckout() {
         return checkout;
-    }
-
-    public void setCheckout(Date checkout) {
-        this.checkout = checkout;
     }
 
     public Integer duration(){
@@ -44,7 +39,23 @@ public class Reservation {
         return (int)duration.toDays();
     }
 
-//    public void updateDates(Date checkin, Date checkout){
-//
-//    }
+    public void updateDates(Date checkin, Date checkout){
+        this.checkin = checkin;
+        this.checkout = checkout;
+    }
+
+    @Override
+    public String toString(){
+        return "Room: "
+                + roomNumber
+                + ", Check-in: "
+                + sdf.format(checkin)
+                + ", Check-out: "
+                + sdf.format(checkout)
+                + ", "
+                + duration()
+                + " night(s)";
+
+
+    }
 }
